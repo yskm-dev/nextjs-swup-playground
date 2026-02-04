@@ -1,0 +1,19 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.description {
+  margin-top: var(--margin-l);
+  font-weight: 600;
+}
+
+.title {
+  margin-top: var(--margin-l);
+  font-size: var(--font-size-heading-2);
+  font-weight: 600;
+}
+
+.notesList {
+  display: grid;
+  gap: var(--margin-m);
+  margin-top: var(--margin-m);
+}
