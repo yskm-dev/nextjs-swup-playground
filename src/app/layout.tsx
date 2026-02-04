@@ -1,7 +1,5 @@
-import { Footer } from '@/components/Footer/Footer';
-import { Header } from '@/components/Header/Header';
 import '@/styles/globals.scss';
-import { PT_Serif, React } from 'next/font/google';
+import { PT_Serif } from 'next/font/google';
 
 const PTSerifFont = PT_Serif({
   weight: ['400', '700'],
@@ -15,15 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={PTSerifFont.className}>
-        <div className="wrapper">
-          <Header />
-          <main>
-            <div className="container">{children}</div>
-          </main>
-          <Footer />
-        </div>
-      </body>
+      <body className={PTSerifFont.className}>{children}</body>
     </html>
   );
 }

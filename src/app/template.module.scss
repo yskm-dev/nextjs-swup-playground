@@ -1,0 +1,76 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+:global(body) {
+  background: var(--color-text);
+}
+
+:global(#wrapper) {
+  background-color: var(--color-background);
+  min-height: 100dvh;
+  padding: 0 rem(40);
+}
+
+:global([data-transition-type="default"]),
+:global([data-transition-type="panel"]) {
+  #wrapper {
+    opacity: 1;
+  }
+  .banner1,
+  .banner2,
+  .banner3,
+  .banner4 {
+    transform: translateY(0%);
+  }
+}
+
+:global([data-transition-type="fade"]) {
+  #wrapper {
+    opacity: 0;
+  }
+  .banner1,
+  .banner2,
+  .banner3,
+  .banner4 {
+    transform: translateY(-100%);
+  }
+}
+
+:global([data-transition-type="zoom"]) {
+  body {
+    perspective: 10000px;
+  }
+  #wrapper {
+    opacity: 0;
+  }
+  .banner1,
+  .banner2,
+  .banner3,
+  .banner4 {
+    transform: translateY(-100%);
+  }
+}
+
+.banner1,
+.banner2,
+.banner3,
+.banner4 {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  height: 100dvh;
+  transform: translateY(-100%);
+  background-color: var(--color-text);
+}
+
+.banner1 {
+  left: 0;
+}
+.banner2 {
+  left: 25%;
+}
+.banner3 {
+  left: 50%;
+}
+.banner4 {
+  left: 75%;
+}

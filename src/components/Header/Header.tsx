@@ -1,17 +1,10 @@
-'use client';
-import Link from 'next/link';
-import styles from './Header.module.scss';
+import { Nav } from '../Nav';
 
-export function Header() {
+export const Header = () => {
   return (
-    <div className={styles.header}>
-      <header className={styles.headerInner}>
-        <h1 className={styles.name}>
-          <Link href="/" className={styles.title}>
-            <span>Next.js & swup Playground</span>
-          </Link>
-        </h1>
-      </header>
-    </div>
+    <header>
+      <h1>Next.js Page Transition Patterns</h1>
+      <Nav></Nav>
+    </header>
   );
-}
+};
