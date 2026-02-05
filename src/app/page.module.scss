@@ -1,6 +1,20 @@
 @use "@/styles/variables" as var;
 @use "@/styles/extension" as *;
 
+.buttonList {
+  display: flex;
+  gap: var(--margin-m);
+  flex-wrap: wrap;
+  margin-bottom: var(--margin-xl);
+  padding-top: var(--margin-l);
+}
+
+.button {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: var(--margin-s) var(--margin-m);
+}
+
 .description {
   margin-top: var(--margin-l);
   font-weight: 600;
@@ -10,4 +24,13 @@
   margin-top: var(--margin-l);
   font-size: var(--font-size-heading-2);
   font-weight: 600;
+}
+
+.section {
+  padding: var(--margin-l) 0 var(--margin-xl);
+}
+
+.title {
+  font-size: (--font-size-heading-1);
+  margin-bottom: var(--margin-m);
 }

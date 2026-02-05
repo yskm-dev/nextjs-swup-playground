@@ -1,0 +1,12 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.nav {
+  margin-top: var(--margin-m);
+}
+
+.navList {
+  display: flex;
+  gap: var(--margin-m);
+  font-weight: 700;
+}

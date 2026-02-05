@@ -1,18 +1,21 @@
 @use "@/styles/variables" as var;
 @use "@/styles/extension" as *;
+
+.wrapperInner {
+  padding: var(--margin-l) var(--margin-m);
+}
 :global(body) {
   background: var(--color-text);
 }
 
-:global(#wrapper) {
+.wrapperInner {
   background-color: var(--color-background);
   min-height: 100dvh;
-  padding: 0 rem(40);
 }
 
 :global([data-transition-type="default"]),
 :global([data-transition-type="panel"]) {
-  #wrapper {
+  .wrapperInner {
     opacity: 1;
   }
   .banner1,
@@ -24,7 +27,7 @@
 }
 
 :global([data-transition-type="fade"]) {
-  #wrapper {
+  .wrapperInner {
     opacity: 0;
   }
   .banner1,
@@ -36,17 +39,17 @@
 }
 
 :global([data-transition-type="zoom"]) {
-  body {
+  .wrapper {
     perspective: 10000px;
   }
-  #wrapper {
+  .wrapperInner {
     opacity: 0;
   }
   .banner1,
   .banner2,
   .banner3,
   .banner4 {
-    transform: translateY(-100%);
+    transform: translateY(0%);
   }
 }
 
@@ -54,7 +57,8 @@
 .banner2,
 .banner3,
 .banner4 {
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   top: 0;
   width: 25%;
   height: 100dvh;

@@ -1,9 +1,10 @@
 import { TransitionLink } from '../TransitionLink';
+import styles from './Nav.module.scss';
 
 export const Nav = () => {
   return (
-    <nav>
-      <ul>
+    <nav className={styles.nav}>
+      <ul className={styles.navList}>
         <li>
           <TransitionLink href="/fade" type="fade">
             Fade

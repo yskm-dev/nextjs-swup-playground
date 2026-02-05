@@ -1,0 +1,25 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--margin-xl) var(--margin-m);
+}
+.card {
+  @for $i from 1 through 13 {
+    &[data-column-start="#{$i}"] {
+      grid-column-start: #{$i};
+    }
+    &[data-column-end="#{$i}"] {
+      grid-column-end: #{$i};
+    }
+    &[data-row-start="#{$i}"] {
+      grid-row-start: #{$i};
+    }
+  }
+}
+
+.column1to5 {
+  grid-column: 1 / 5;
+}

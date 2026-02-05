@@ -9,6 +9,7 @@ type transitonOutProps = {
  * Fade
  */
 export function fadeIn() {
+  console.log('fadeIn');
   const timeline = createTimeline();
   timeline
     .label('start', 0)
@@ -24,6 +25,7 @@ export function fadeIn() {
 }
 
 export function fadeOut({ href, router }: transitonOutProps) {
+  console.log('fadeOut');
   const timeline = createTimeline();
   timeline
     .label('start', 0)
@@ -36,7 +38,11 @@ export function fadeOut({ href, router }: transitonOutProps) {
       onComplete: () => {
         // Do nothing for now
         document.documentElement.dataset.transitionType = 'fade';
-        router.push(href);
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            router.push(href);
+          }, 100);
+        });
       },
     })
     .play();
@@ -55,7 +61,7 @@ export function panelIn() {
     })
     .add(['#banner1', '#banner2', '#banner3', '#banner4'], {
       translateY: '-100%',
-      easing: 'easeInOutQuart',
+      ease: 'in(3)',
       duration: 300,
       delay: (el, i) => i * 50,
     })
@@ -64,21 +70,26 @@ export function panelIn() {
 }
 
 export function panelOut({ href, router }: transitonOutProps) {
+  console.log('panelOut');
   const timeline = createTimeline();
   timeline
     .label('start', 0)
-    .set(['#banner1', '#banner2', '#banner3', '#banner4'], {
-      translateY: '100%',
-    })
     .add(['#banner1', '#banner2', '#banner3', '#banner4'], {
-      translateY: '0%',
-      easing: 'easeInOutQuart',
+      translateY: {
+        from: '100%',
+        to: '0%',
+      },
+      ease: 'out(3)',
       duration: 300,
       delay: (el, i) => i * 50,
       onComplete: () => {
         // Do nothing for now
         document.documentElement.dataset.transitionType = 'panel';
-        router.push(href);
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            router.push(href);
+          }, 100);
+        });
       },
     })
     .play();
@@ -92,18 +103,23 @@ export function zoomIn() {
   const timeline = createTimeline();
 
   const wrapper = waapi.animate('#wrapper', {
-    duration: 400,
+    duration: 600,
     translateZ: {
-      from: -500,
+      from: -1000,
       to: 0,
+      ease: 'out(3)',
     },
-    opacity: { from: 0, to: 1 },
+    opacity: { from: 0, to: 1, ease: 'linear' },
   });
   const banner = waapi.animate(
     ['#banner1', '#banner2', '#banner3', '#banner4'],
     {
       duration: 400,
-      y: '-100%',
+      ease: 'out(3)',
+      y: {
+        from: '0%',
+        to: '-100%',
+      },
     }
   );
 
@@ -114,19 +130,20 @@ export function zoomIn() {
 export function zoomOut({ href, router }: transitonOutProps) {
   const timeline = createTimeline();
   timeline
-    .label('start', 0)
-    .set(['#banner1', '#banner2', '#banner3', '#banner4'], {
-      y: '100%',
-    })
     .add(['#banner1', '#banner2', '#banner3', '#banner4'], {
-      y: '0%',
-      easing: 'easeInOutQuart',
+      y: {
+        from: '100%',
+        to: '0%',
+      },
+      ease: 'in(3)',
       duration: 400,
       onComplete: () => {
         // Do nothing for now
         document.documentElement.dataset.transitionType = 'zoom';
         requestAnimationFrame(() => {
-          router.push(href);
+          setTimeout(() => {
+            router.push(href);
+          }, 100);
         });
       },
     })
