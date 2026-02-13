@@ -1,43 +1,33 @@
 'use client';
 
-import { fadeOut, panelOut, zoomOut } from '@/libs/animations';
+import {
+  TransitionType,
+  usePageTransition,
+} from '@/context/TransitionContext';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   href: string;
   children: React.ReactNode;
-  type?: string | null;
+  type?: TransitionType;
 };
 
-export const TransitionLink = ({ href, children, type }: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
+export const TransitionLink = ({
+  href,
+  children,
+  type = 'panel',
+}: Props) => {
+  const { startTransition } = usePageTransition();
 
-  const handleClick = (e: MouseEvent) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-
-    if (pathname !== href) {
-      switch (type) {
-        case 'fade':
-          fadeOut({ href, router });
-          return;
-        case 'panel':
-          panelOut({ href, router });
-          return;
-        case 'zoom':
-          zoomOut({ href, router });
-          return;
-        default:
-          panelOut({ href, router });
-          return;
-      }
-    }
+    startTransition(type, href);
   };
+
   return (
     <Link
       href={href}
-      onClick={(e) => handleClick(e as unknown as MouseEvent)}
+      onClick={handleClick}
       style={{ all: 'unset', cursor: 'pointer' }}
     >
       {children}

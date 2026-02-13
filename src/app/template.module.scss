@@ -1,56 +1,14 @@
 @use "@/styles/variables" as var;
 @use "@/styles/extension" as *;
 
-.wrapperInner {
-  padding: var(--margin-l) var(--margin-m);
-}
 :global(body) {
   background: var(--color-text);
 }
 
 .wrapperInner {
+  padding: var(--margin-l) var(--margin-m);
   background-color: var(--color-background);
   min-height: 100dvh;
-}
-
-:global([data-transition-type="default"]),
-:global([data-transition-type="panel"]) {
-  .wrapperInner {
-    opacity: 1;
-  }
-  .banner1,
-  .banner2,
-  .banner3,
-  .banner4 {
-    transform: translateY(0%);
-  }
-}
-
-:global([data-transition-type="fade"]) {
-  .wrapperInner {
-    opacity: 0;
-  }
-  .banner1,
-  .banner2,
-  .banner3,
-  .banner4 {
-    transform: translateY(-100%);
-  }
-}
-
-:global([data-transition-type="zoom"]) {
-  .wrapper {
-    perspective: 10000px;
-  }
-  .wrapperInner {
-    opacity: 0;
-  }
-  .banner1,
-  .banner2,
-  .banner3,
-  .banner4 {
-    transform: translateY(0%);
-  }
 }
 
 .banner1,

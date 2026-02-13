@@ -1,5 +1,6 @@
 import '@/styles/globals.scss';
 import { PT_Serif } from 'next/font/google';
+import { TransitionProvider } from '@/context/TransitionContext';
 
 const PTSerifFont = PT_Serif({
   weight: ['400', '700'],
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={PTSerifFont.className}>{children}</body>
+      <body className={PTSerifFont.className}>
+        <TransitionProvider>{children}</TransitionProvider>
+      </body>
     </html>
   );
 }
