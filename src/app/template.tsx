@@ -1,7 +1,7 @@
 'use client';
-
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { LenisProvider } from '@/context/LenisContext';
 import { usePageTransition } from '@/context/TransitionContext';
 import { fadeIn, panelIn, zoomIn } from '@/libs/animations';
 import { useEffect, useRef } from 'react';
@@ -62,7 +62,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, [transitionType, resetTransition]);
 
   return (
-    <>
+    <LenisProvider>
       <div className={styles.wrapper} style={initialStyles.wrapper}>
         <div
           ref={wrapperRef}
@@ -95,6 +95,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
         className={styles.banner4}
         style={initialStyles.banner}
       ></div>
-    </>
+    </LenisProvider>
   );
 }

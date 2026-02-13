@@ -1,3 +1,4 @@
+import { Parallax } from '@/components/Parallax';
 import Image from 'next/image';
 import styles from './Gallery.module.scss';
 
@@ -10,12 +11,14 @@ export function Gallery({ path = 'gallery' }: { path?: string }) {
         data-row-start="1"
         className={styles.card}
       >
-        <Image
-          src={`/images/${path}/image1.jpg`}
-          alt="Gallery Image 1"
-          width={678}
-          height={678}
-        />
+        <Parallax speed={20}>
+          <Image
+            src={`/images/${path}/image1.jpg`}
+            alt="Gallery Image 1"
+            width={678}
+            height={678}
+          />
+        </Parallax>
       </div>
       <div
         data-column-start="9"
@@ -23,12 +26,14 @@ export function Gallery({ path = 'gallery' }: { path?: string }) {
         data-row-start="2"
         className={styles.card}
       >
-        <Image
-          src={`/images/${path}/image2.jpg`}
-          alt="Gallery Image 2"
-          width={678}
-          height={678}
-        />
+        <Parallax speed={10}>
+          <Image
+            src={`/images/${path}/image2.jpg`}
+            alt="Gallery Image 2"
+            width={678}
+            height={678}
+          />
+        </Parallax>
       </div>
       <div
         data-column-start="4"
@@ -36,12 +41,14 @@ export function Gallery({ path = 'gallery' }: { path?: string }) {
         data-row-start="3"
         className={styles.card}
       >
-        <Image
-          src={`/images/${path}/image3.jpg`}
-          alt="Gallery Image 3"
-          width={678}
-          height={678}
-        />
+        <Parallax speed={15}>
+          <Image
+            src={`/images/${path}/image3.jpg`}
+            alt="Gallery Image 3"
+            width={678}
+            height={678}
+          />
+        </Parallax>
       </div>
       <div
         data-column-start="1"
@@ -49,12 +56,14 @@ export function Gallery({ path = 'gallery' }: { path?: string }) {
         data-row-start="4"
         className={styles.card}
       >
-        <Image
-          src={`/images/${path}/image4.jpg`}
-          alt="Gallery Image 4"
-          width={1200}
-          height={1200}
-        />
+        <Parallax speed={30}>
+          <Image
+            src={`/images/${path}/image4.jpg`}
+            alt="Gallery Image 4"
+            width={1200}
+            height={1200}
+          />
+        </Parallax>
       </div>
       <div
         data-column-start="8"
@@ -62,12 +71,14 @@ export function Gallery({ path = 'gallery' }: { path?: string }) {
         data-row-start="5"
         className={styles.card}
       >
-        <Image
-          src={`/images/${path}/image5.jpg`}
-          alt="Gallery Image 5"
-          width={1200}
-          height={1200}
-        />
+        <Parallax speed={10}>
+          <Image
+            src={`/images/${path}/image5.jpg`}
+            alt="Gallery Image 5"
+            width={1200}
+            height={1200}
+          />
+        </Parallax>
       </div>
     </div>
   );
