@@ -7,8 +7,30 @@ import { fadeIn, panelIn, zoomIn } from '@/libs/animations';
 import { useEffect, useRef } from 'react';
 import styles from './template.module.scss';
 
+function waitForImages(container: Element): Promise<void> {
+  const images = container.querySelectorAll<HTMLImageElement>('img');
+  if (images.length === 0) return Promise.resolve();
+
+  const pending = Array.from(images)
+    .filter((img) => !img.complete)
+    .map(
+      (img) =>
+        new Promise<void>((resolve) => {
+          img.addEventListener('load', () => resolve(), { once: true });
+          img.addEventListener('error', () => resolve(), { once: true });
+        })
+    );
+
+  if (pending.length === 0) return Promise.resolve();
+  return Promise.race([
+    Promise.all(pending).then(() => {}),
+    new Promise<void>((resolve) => setTimeout(resolve, 2000)),
+  ]);
+}
+
 export default function Template({ children }: { children: React.ReactNode }) {
   const hasRun = useRef(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const { transitionType, initialStyles, resetTransition } =
     usePageTransition();
 
@@ -17,6 +39,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
     hasRun.current = true;
     if (transitionType === 'zoom') window.scrollTo(0, 0);
     requestAnimationFrame(async () => {
+      if (transitionType === 'fade' && wrapperRef.current) {
+        await waitForImages(wrapperRef.current);
+      }
+
       switch (transitionType) {
         case 'fade':
           await fadeIn();
@@ -39,6 +65,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <>
       <div className={styles.wrapper} style={initialStyles.wrapper}>
         <div
+          ref={wrapperRef}
           id="wrapper"
           className={styles.wrapperInner}
           style={initialStyles.wrapperInner}

@@ -80,6 +80,8 @@ export function TransitionProvider({
     async (type: TransitionType, href: string) => {
       if (pathname === href) return;
 
+      router.prefetch(href);
+
       const outAnimation = getOutAnimation(type);
       await outAnimation();
 
@@ -99,7 +101,12 @@ export function TransitionProvider({
 
   return (
     <TransitionContext.Provider
-      value={{ transitionType, initialStyles, startTransition, resetTransition }}
+      value={{
+        transitionType,
+        initialStyles,
+        startTransition,
+        resetTransition,
+      }}
     >
       {children}
     </TransitionContext.Provider>
